@@ -3,7 +3,7 @@ name: M8-72H_VM_Test
 
 on:
   schedule:
-    - cron: '0 11 * * MON-FRI'
+    - cron: '0 7 * * MON-FRI'
 
   workflow_dispatch:
     inputs:
