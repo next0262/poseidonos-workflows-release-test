@@ -1,0 +1,23 @@
+
+name: M8-72H_VM_Test
+
+on:
+  schedule:
+    - cron: '0 1 * * MON-FRI'
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+
+jobs:
+  Three_Days_Test:
+    runs-on: VM
+    timeout-minutes: 5000
+    steps: 
+    - run: |
+        echo "execute M8-72H_VM_Test"

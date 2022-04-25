@@ -1,0 +1,22 @@
+
+name: M-UnitTest_VM
+
+on:
+  push:
+    branches: [ main ] 
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+          
+jobs:
+  Unit_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Unit_Test in M-UnitTest_VM"

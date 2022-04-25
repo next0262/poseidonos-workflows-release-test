@@ -1,0 +1,22 @@
+
+name: M1-PostVM_Test
+
+on:
+  push:
+    branches: [ main ] 
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+
+jobs:
+  Postcommit_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute M1-PostVM_Test"

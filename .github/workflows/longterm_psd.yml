@@ -1,0 +1,23 @@
+
+name: M9-LongTerm_PSD_Test
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+
+jobs:
+  longterm_test:
+    runs-on: PSD
+    timeout-minutes: 5000
+    steps:
+    - run: |
+        echo "execute M9-LongTerm_PSD_Test"

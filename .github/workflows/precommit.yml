@@ -1,0 +1,66 @@
+
+name: C-Precommit_VM_Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+
+jobs:
+  IO_Exception_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute IO_Exception_Test in C-Precommit_VM_Test"
+
+  Normal_IO_NPOR_SPOR_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Normal_IO_NPOR_SPOR_Test in C-Precommit_VM_Test"
+
+  Rebuild_SPOR_test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Rebuild_SPOR_test in C-Precommit_VM_Test"
+
+
+  Rebuild_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Rebuild_Test in C-Precommit_VM_Test"
+
+
+  Rotational_Rebuild_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Rotational_Rebuild_Test in C-Precommit_VM_Test"
+
+  Unit_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Unit_Test in C-Precommit_VM_Test"
+
+  Volume_Test:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute Volume_Test in C-Precommit_VM_Test"
+
+  WBT_IO_ST:
+    runs-on: VM
+    steps:
+    - run: |
+        echo "execute WBT_IO_ST in C-Precommit_VM_Test"

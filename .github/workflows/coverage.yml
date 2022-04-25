@@ -1,0 +1,42 @@
+
+name: M4-Coverage_VM_Test
+
+on:
+  schedule:
+    - cron: '0 11-21/1 * * MON-FRI'
+
+  workflow_dispatch:
+    inputs:
+       logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+       tags:
+          description: 'Test scenario tags'
+
+jobs:
+  check_date:
+    runs-on: VM
+    name: Check latest commit
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+    - run: |
+        sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+    - uses: actions/checkout@v2
+    - id: should_run
+      name: check latest commit is less than 3 hours
+      if: ${{ github.event_name == 'schedule' }}
+      working-directory: ${{github.workspace}}
+      run: 
+        date=`date -d "-3 hours" "+%s"`; result=`git rev-list -1 --after=$date main`
+        test -z $result && echo "::set-output name=should_run::false"
+
+  Coverage_Test:
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    runs-on: VM
+    timeout-minutes: 5000
+    steps:
+    - run: |
+        echo "execute M4-Coverage_VM_Test"
